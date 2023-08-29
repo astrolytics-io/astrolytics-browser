@@ -1,5 +1,5 @@
 export default {
-  endpoint: 'wss://app.nucleus.sh',
+  endpoint: 'wss://app.astrolytics.io',
   disableInDev: false,
   debug: false,
   disableTracking: false,

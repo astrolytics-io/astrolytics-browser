@@ -1,15 +1,15 @@
 {
-  "name": "nucleus-browser",
+  "name": "astrolytics-browser",
   "version": "1.0.14",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
   "types": "./dist/types/index.d.ts",
   "type": "module",
   "license": "MIT",
-  "homepage": "https://www.nucleus.sh",
+  "homepage": "https://www.astrolytics.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nucleus-sh/nucleus-browser.git"
+    "url": "https://github.com/astrolytics-io/astrolytics-browser.git"
   },
   "files": [
     "dist"

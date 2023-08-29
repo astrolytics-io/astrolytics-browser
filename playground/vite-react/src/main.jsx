@@ -1,4 +1,4 @@
-import Nucleus from 'nucleus-browser';
+import Astrolytics from 'astrolytics-browser';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -8,7 +8,7 @@ import './index.css';
 
 const APP_ID = '64b831f52e614c4ac76b4684';
 
-Nucleus.init(APP_ID, {
+Astrolytics.init(APP_ID, {
   debug: true,
   endpoint: 'ws://localhost:3002',
   reportInterval: 4 * 1000,

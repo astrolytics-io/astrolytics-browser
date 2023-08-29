@@ -13,7 +13,7 @@ then, run the project:
 yarn dev
 ```
 
-make sure to replace `APP_ID` with your Nucleus APP_ID in `src/main.ts`
+make sure to replace `APP_ID` with your Astrolytics APP_ID in `src/main.ts`
 
 To test with CDN script, replace
 

@@ -30,15 +30,15 @@ function getInitialStore(): Store {
 
   try {
     storeValues = {
-      appId: safeLocalStorage.getItem('nucleus-appId') ?? null,
-      queue: JSON.parse(safeLocalStorage.getItem('nucleus-queue') || '[]'),
-      props: JSON.parse(safeLocalStorage.getItem('nucleus-props') || '{}'),
-      userId: safeLocalStorage.getItem('nucleus-userId') ?? null,
-      anonId: safeLocalStorage.getItem('nucleus-anonId') ?? generateStrId(12),
-      device: JSON.parse(safeLocalStorage.getItem('nucleus-device') || 'null') ?? getDeviceInfo(),
-      sessionId: safeLocalStorage.getItem('nucleus-sessionId') ?? generateNumId(8),
-      lastActive: JSON.parse(safeLocalStorage.getItem('nucleus-lastActive') || 'null') ?? Date.now(),
-      initialized: JSON.parse(safeLocalStorage.getItem('nucleus-initialized') || 'false'),
+      appId: safeLocalStorage.getItem('astrolytics-appId') ?? null,
+      queue: JSON.parse(safeLocalStorage.getItem('astrolytics-queue') || '[]'),
+      props: JSON.parse(safeLocalStorage.getItem('astrolytics-props') || '{}'),
+      userId: safeLocalStorage.getItem('astrolytics-userId') ?? null,
+      anonId: safeLocalStorage.getItem('astrolytics-anonId') ?? generateStrId(12),
+      device: JSON.parse(safeLocalStorage.getItem('astrolytics-device') || 'null') ?? getDeviceInfo(),
+      sessionId: safeLocalStorage.getItem('astrolytics-sessionId') ?? generateNumId(8),
+      lastActive: JSON.parse(safeLocalStorage.getItem('astrolytics-lastActive') || 'null') ?? Date.now(),
+      initialized: JSON.parse(safeLocalStorage.getItem('astrolytics-initialized') || 'false'),
     };
   } catch (err) {
     // do nothing
@@ -58,7 +58,7 @@ export default function getStore(): Store {
       const storageType = storageKeys[prop];
       const storage = storageType === 'session' ? safeSessionStorage : safeLocalStorage;
 
-      const storageValue = storage.getItem(`nucleus-${String(prop)}`);
+      const storageValue = storage.getItem(`astrolytics-${String(prop)}`);
       if (storageValue !== null && typeof storageValue === 'string') {
         try {
           const parsedValue = JSON.parse(storageValue);
@@ -78,7 +78,7 @@ export default function getStore(): Store {
 
       // @ts-expect-error: this is fine
       target[prop] = value;
-      storage.setItem(`nucleus-${String(prop)}`, JSON.stringify(value));
+      storage.setItem(`astrolytics-${String(prop)}`, JSON.stringify(value));
       return true;
     },
   });

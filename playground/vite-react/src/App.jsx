@@ -1,4 +1,4 @@
-import Nucleus from 'nucleus-browser';
+import Astrolytics from 'astrolytics-browser';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -13,7 +13,7 @@ function App() {
 
   function trackClick() {
     if (trackingEnabled) {
-      Nucleus.track('click');
+      Astrolytics.track('click');
       toast.success('Tracked click', { position: 'top-right' });
     }
   }
@@ -21,13 +21,13 @@ function App() {
   function trackWithMetadata(val) {
     if (!trackingEnabled) return;
 
-    Nucleus.track('custom', { foo: val });
+    Astrolytics.track('custom', { foo: val });
     toast.success(`Tracked custom event with { foo: "${val}" } metadata`, { position: 'top-right' });
   }
 
   function identify() {
-    Nucleus.identify('18710830', {
-      email: 'ernest@nucleus.sh',
+    Astrolytics.identify('18710830', {
+      email: 'ernest@astrolytics.io',
       firstName: 'Ernest',
       lastName: 'Rutherford',
     });
@@ -38,18 +38,18 @@ function App() {
   function pageview() {
     if (!trackingEnabled) return;
 
-    Nucleus.page('/blog', { scrollHeight: 1123 });
+    Astrolytics.page('/blog', { scrollHeight: 1123 });
     toast.success('Tracked pageview for /blog', { position: 'top-right' });
   }
 
   function disableTracking() {
-    Nucleus.disableTracking();
+    Astrolytics.disableTracking();
     toast.success('Disabled tracking', { position: 'top-right' });
     setTrackingEnabled(false);
   }
 
   function enableTracking() {
-    Nucleus.enableTracking();
+    Astrolytics.enableTracking();
     toast.success('Enabled tracking', { position: 'top-right' });
     setTrackingEnabled(true);
   }

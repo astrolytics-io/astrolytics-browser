@@ -17,11 +17,11 @@ export function getDeviceInfo(): DeviceInfo {
     locale: client.getLanguage(),
   };
 
-  if (safeLocalStorage.getItem('nucleus-dId')) {
-    data.deviceId = safeLocalStorage.getItem('nucleus-dId');
+  if (safeLocalStorage.getItem('astrolytics-dId')) {
+    data.deviceId = safeLocalStorage.getItem('astrolytics-dId');
   } else {
     data.deviceId = client.getFingerprint().toString();
-    safeLocalStorage.setItem('nucleus-dId', data.deviceId);
+    safeLocalStorage.setItem('astrolytics-dId', data.deviceId);
   }
 
   let isIpad: boolean;

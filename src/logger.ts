@@ -9,19 +9,19 @@ export default class Logger {
 
   static log(msg: string) {
     if (Logger.config?.debug) {
-      console.log(`Nucleus: ${msg}`);
+      console.log(`Astrolytics: ${msg}`);
     }
   }
 
   static warn(msg: string) {
     if (Logger.config?.debug) {
-      console.warn(`Nucleus warning: ${msg}`);
+      console.warn(`Astrolytics warning: ${msg}`);
     }
   }
 
   static error(msg: string) {
     if (Logger.config?.debug) {
-      console.error(`Nucleus error: ${msg}`);
+      console.error(`Astrolytics error: ${msg}`);
     }
   }
 }

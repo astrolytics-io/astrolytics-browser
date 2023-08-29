@@ -1,4 +1,4 @@
-import Nucleus from 'nucleus-browser';
+import Astrolytics from 'astrolytics-browser';
 import './style.css';
 import typescriptLogo from './typescript.svg';
 import viteLogo from '/vite.svg'; // eslint-disable-line import/no-absolute-path
@@ -6,7 +6,7 @@ import { setupCounter } from './counter';
 
 const APP_ID = '64b72d3576d14e90860b8956';
 
-Nucleus.init(APP_ID, {
+Astrolytics.init(APP_ID, {
   debug: true,
   endpoint: 'ws://localhost:3002',
   reportInterval: 4 * 1000,
@@ -52,8 +52,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </div>
     <a href="/my-page">Going to other pages will trigger pageview by default!</button>
     <p class="self-center text-center italic font-light text-sm text-gray-100">
-      identify arguments: Nucleus.identify('18710830', {
-        email: 'ernest@nucleus.sh',
+      identify arguments: Astrolytics.identify('18710830', {
+        email: 'ernest@astrolytics.io',
         firstName: 'Ernest',
         lastName: 'Rutherford'
       });
@@ -64,38 +64,38 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
 
 document.querySelector<HTMLButtonElement>('#trackButton')!.addEventListener('click', () => {
-  Nucleus.track('click');
+  Astrolytics.track('click');
 });
 
 document.querySelector<HTMLButtonElement>('#trackFooBar')!.addEventListener('click', () => {
-  Nucleus.track('custom', { foo: 'bar' });
+  Astrolytics.track('custom', { foo: 'bar' });
 });
 
 document.querySelector<HTMLButtonElement>('#trackFooBaz')!.addEventListener('click', () => {
-  Nucleus.track('custom', { foo: 'baz' });
+  Astrolytics.track('custom', { foo: 'baz' });
 });
 
 document.querySelector<HTMLButtonElement>('#identify')!.addEventListener('click', () => {
-  Nucleus.identify('18710830', {
-    email: 'ernest@nucleus.sh',
+  Astrolytics.identify('18710830', {
+    email: 'ernest@astrolytics.io',
     firstName: 'Ernest',
     lastName: 'Rutherford',
   });
 });
 
 document.querySelector<HTMLButtonElement>('#trackPage')!.addEventListener('click', () => {
-  Nucleus.page('/blog', { scrollHeight: 1123 });
+  Astrolytics.page('/blog', { scrollHeight: 1123 });
 });
 
 document.querySelector<HTMLButtonElement>('#disableTracking')!.addEventListener('click', () => {
-  Nucleus.disableTracking();
+  Astrolytics.disableTracking();
   document.querySelector<HTMLSpanElement>('#tracking')!.innerText = 'disabled';
   document.querySelector<HTMLSpanElement>('#tracking')!.classList.remove('text-green-400');
   document.querySelector<HTMLSpanElement>('#tracking')!.classList.add('text-red-400');
 });
 
 document.querySelector<HTMLButtonElement>('#enableTracking')!.addEventListener('click', () => {
-  Nucleus.enableTracking();
+  Astrolytics.enableTracking();
   document.querySelector<HTMLSpanElement>('#tracking')!.innerText = 'enabled';
   document.querySelector<HTMLSpanElement>('#tracking')!.classList.remove('text-red-400');
   document.querySelector<HTMLSpanElement>('#tracking')!.classList.add('text-green-400');
@@ -105,7 +105,7 @@ document.querySelector<HTMLButtonElement>('#trackError')!.addEventListener('clic
   try {
     throw new Error('This is a handled test error');
   } catch (e) {
-    Nucleus.trackError(e);
+    Astrolytics.trackError(e);
   }
 
   throw new Error('This is an unhandled test error');

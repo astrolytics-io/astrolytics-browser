@@ -27,7 +27,7 @@ export default {
     {
       file: 'dist/bundle.iife.js', // output bundle location for IIFE
       format: 'iife', // Immediately-invoked Function Expression — suitable for <script> tags
-      name: 'Nucleus',
+      name: 'Astrolytics',
       sourcemap: process.env.BUILD_DEV === 'true', // Conditionally generate sourcemaps
     },
   ],
