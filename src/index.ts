@@ -298,7 +298,7 @@ export default class Astrolytics {
 
     Logger.log(`viewing screen ${name}`);
 
-    this.track(name, params, 'astrolytics:view');
+    this.track(name, params, '$pageview');
     this.lastTrackedPath = name;
   }
 
