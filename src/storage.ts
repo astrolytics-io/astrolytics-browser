@@ -26,7 +26,7 @@ class InMemoryJSONStorage implements JSONStorage {
   }
 
   setItem<T>(key: string, value: T): void {
-    this.storage[key] = value;
+    this.storage[key] = JSON.stringify(value);
   }
 
   removeItem(key: string): void {

@@ -31,14 +31,14 @@ function getInitialStore(): Store {
   try {
     storeValues = {
       appId: safeLocalStorage.getItem('astrolytics-appId') ?? null,
-      queue: JSON.parse(safeLocalStorage.getItem('astrolytics-queue') || '[]'),
-      props: JSON.parse(safeLocalStorage.getItem('astrolytics-props') || '{}'),
+      queue: safeLocalStorage.getItem('astrolytics-queue') || [],
+      props: safeLocalStorage.getItem('astrolytics-props') || {},
       userId: safeLocalStorage.getItem('astrolytics-userId') ?? null,
       anonId: safeLocalStorage.getItem('astrolytics-anonId') ?? generateStrId(12),
-      device: JSON.parse(safeLocalStorage.getItem('astrolytics-device') || 'null') ?? getDeviceInfo(),
+      device: safeLocalStorage.getItem('astrolytics-device') ?? getDeviceInfo(),
       sessionId: safeLocalStorage.getItem('astrolytics-sessionId') ?? generateNumId(8),
-      lastActive: JSON.parse(safeLocalStorage.getItem('astrolytics-lastActive') || 'null') ?? Date.now(),
-      initialized: JSON.parse(safeLocalStorage.getItem('astrolytics-initialized') || 'false'),
+      lastActive: safeLocalStorage.getItem('astrolytics-lastActive') ?? Date.now(),
+      initialized: safeLocalStorage.getItem('astrolytics-initialized') || false,
     };
   } catch (err) {
     // do nothing
@@ -78,7 +78,7 @@ export default function getStore(): Store {
 
       // @ts-expect-error: this is fine
       target[prop] = value;
-      storage.setItem(`astrolytics-${String(prop)}`, JSON.stringify(value));
+      storage.setItem(`astrolytics-${String(prop)}`, value);
       return true;
     },
   });
