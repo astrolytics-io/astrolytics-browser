@@ -1,7 +1,7 @@
 import { getDeviceInfo } from './device';
 import { isDevMode, cleanEvent, generateNumId, ExtendedWebSocket } from './utils';
 import defaults from './config';
-import getStore from './store';
+import getStore, { checkAndUpdateStorageForNewVersion } from './store';
 import Logger from './logger';
 import type { Options, ServerACK, InitOrErrorEvent, HeartbeatEvent, AstrolyticsEvent, Store } from './types';
 
@@ -11,6 +11,8 @@ let client: Astrolytics | null = null;
 export default class Astrolytics {
   public static init(appId: string, options: Partial<Options> = {}) {
     client = new Astrolytics(appId, options);
+
+    checkAndUpdateStorageForNewVersion();
   }
 
   public static track(
@@ -235,7 +237,7 @@ export default class Astrolytics {
       } as InitOrErrorEvent;
     }
 
-    this.stored.queue.push(event);
+    this.stored.queue = [...this.stored.queue, event];
     Logger.log(`Added to queue: ${JSON.stringify(event)}`);
   }
 

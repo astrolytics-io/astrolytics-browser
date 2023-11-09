@@ -4,6 +4,7 @@ interface JSONStorage {
   setItem<T>(key: string, value: T): void;
   removeItem(key: string): void;
   clear(): void;
+  getAllKeys(): string[];
 }
 
 interface Storage {
@@ -11,6 +12,8 @@ interface Storage {
   setItem(key: string, value: string): void;
   removeItem(key: string): void;
   clear(): void;
+  length: number;
+  key(index: number): string | null;
 }
 
 class InMemoryJSONStorage implements JSONStorage {
@@ -18,6 +21,10 @@ class InMemoryJSONStorage implements JSONStorage {
 
   constructor() {
     this.storage = {};
+  }
+
+  getAllKeys(): string[] {
+    return Object.keys(this.storage);
   }
 
   getItem<T>(key: string): T | null {
@@ -43,6 +50,17 @@ class JSONWrapper implements JSONStorage {
 
   constructor(storage: Storage) {
     this.storage = storage;
+  }
+
+  getAllKeys(): string[] {
+    const keys: string[] = [];
+    for (let i = 0; i < this.storage.length; i += 1) {
+      const key = this.storage.key(i);
+      if (key !== null) {
+        keys.push(key);
+      }
+    }
+    return keys;
   }
 
   getItem<T>(key: string): T | null {

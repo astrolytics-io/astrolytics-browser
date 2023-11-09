@@ -1,6 +1,9 @@
+import { compareVersions } from 'compare-versions';
 import { getDeviceInfo } from './device';
 import { safeLocalStorage, safeSessionStorage } from './storage';
 import { generateNumId, generateStrId } from './utils';
+import migrations from './storeMigrations';
+import packageInfo from '../package.json';
 import type { Store } from './types';
 
 const storageKeys = {
@@ -14,6 +17,48 @@ const storageKeys = {
   lastActive: 'local',
   initialized: 'local',
 };
+
+function performMigrations(storedVersion: string) {
+  // Initialize an empty object to hold the migrated store
+  let migratedStore: { [key: string]: any } = {};
+
+  // Assuming safeLocalStorage has a method to get all keys
+  // If not, you'll need to define a method or have a predefined list of keys
+  const keys = safeLocalStorage.getAllKeys();
+
+  // Iterate over the keys and get their values from safeLocalStorage
+  keys.forEach((key: string) => {
+    const value = safeLocalStorage.getItem(key);
+    if (value !== null) {
+      migratedStore[key] = value;
+    }
+  });
+
+  // Perform the migrations
+  Object.keys(migrations).forEach((version) => {
+    if (compareVersions(version, storedVersion) > 0) {
+      migratedStore = migrations[version](migratedStore);
+    }
+  });
+
+  // Update safeLocalStorage with the migrated values
+  Object.keys(migratedStore).forEach((key) => {
+    const value = migratedStore[key];
+    if (value === null) {
+      safeLocalStorage.removeItem(key);
+    } else {
+      safeLocalStorage.setItem(key, value);
+    }
+  });
+}
+
+export function checkAndUpdateStorageForNewVersion() {
+  const storedVersion = safeLocalStorage.getItem('astrolytics-sdk-version') as string || '1.0.0';
+  if (storedVersion !== packageInfo.version) {
+    performMigrations(storedVersion);
+    safeLocalStorage.setItem('astrolytics-sdk-version', packageInfo.version);
+  }
+}
 
 function getInitialStore(): Store {
   let storeValues: Store = {

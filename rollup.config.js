@@ -6,6 +6,7 @@ import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+import json from '@rollup/plugin-json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,5 +52,6 @@ export default {
         __VERSION__: JSON.stringify(pkg.version),
       },
     }),
+    json(),
   ],
 };

@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@types/clientjs": "^0.2.0",
@@ -37,6 +38,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "clientjs": "^0.2.1"
+    "clientjs": "^0.2.1",
+    "compare-versions": "^6.1.0"
   }
 }
