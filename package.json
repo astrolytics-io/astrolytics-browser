@@ -1,6 +1,6 @@
 {
   "name": "astrolytics-browser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
   "types": "./dist/types/index.d.ts",
