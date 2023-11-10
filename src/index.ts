@@ -224,6 +224,7 @@ export default class Astrolytics {
       deviceId: this.stored.device.deviceId,
       userId: this.stored.userId,
       anonId: this.stored.anonId,
+      version: this.config.version,
       moduleVersion: this.config.moduleVersion,
       client: 'browser',
     };

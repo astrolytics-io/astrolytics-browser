@@ -17,6 +17,7 @@ export interface Options {
   reportInterval: number;
   sessionTimeout: number;
   disableErrorReports: boolean;
+  version: string | undefined;
   moduleVersion: string;
 }
 
@@ -48,6 +49,7 @@ interface CommonEvent extends SharedProperties {
   payload: string | object | null;
   deviceId: DeviceInfo['deviceId'];
   moduleVersion: Options['moduleVersion'];
+  version: Options['version'];
   client: 'browser',
 }
 
