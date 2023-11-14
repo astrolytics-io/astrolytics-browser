@@ -24,7 +24,7 @@ class InMemoryJSONStorage implements JSONStorage {
   }
 
   getAllKeys(): string[] {
-    return Object.keys(this.storage);
+    return Object.keys(this.storage).filter((key) => key.startsWith('astrolytics-'));
   }
 
   getItem<T>(key: string): T | null {
@@ -56,7 +56,7 @@ class JSONWrapper implements JSONStorage {
     const keys: string[] = [];
     for (let i = 0; i < this.storage.length; i += 1) {
       const key = this.storage.key(i);
-      if (key !== null) {
+      if (key !== null && key.startsWith('astrolytics-')) {
         keys.push(key);
       }
     }

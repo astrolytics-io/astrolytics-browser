@@ -12,4 +12,11 @@ export default {
 
     return store;
   },
+  '1.0.6': (store) => {
+    Object.keys(store).forEach((key) => {
+      store[key] = null;
+    });
+
+    return store;
+  },
 } as Migrations;

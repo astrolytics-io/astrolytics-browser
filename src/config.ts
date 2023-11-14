@@ -1,3 +1,5 @@
+import { type Options } from './types';
+
 export default {
   endpoint: 'wss://app.astrolytics.io',
   disableInDev: false,
@@ -10,4 +12,4 @@ export default {
   disableErrorReports: false,
   version: undefined,
   moduleVersion: __VERSION__,
-};
+} as Options;

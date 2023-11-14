@@ -16,6 +16,7 @@ export interface Options {
   automaticPageTracking: boolean;
   reportInterval: number;
   sessionTimeout: number;
+  cutoff: number;
   disableErrorReports: boolean;
   version: string | undefined;
   moduleVersion: string;

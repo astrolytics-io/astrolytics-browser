@@ -62,7 +62,7 @@ export default class Astrolytics {
     }
 
     this.stored.appId = appId;
-    this.config = { ...defaults, ...options };
+    this.config = { ...defaults, ...options as Options };
 
     if (!this.stored.initialized) {
       this.stored.initialized = true;
