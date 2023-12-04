@@ -85,6 +85,11 @@ function getInitialStore(): Store {
       lastActive: safeLocalStorage.getItem('astrolytics-lastActive') ?? Date.now(),
       initialized: safeLocalStorage.getItem('astrolytics-initialized') || false,
     };
+
+    // old bug
+    if (typeof storeValues.props === 'string') {
+      storeValues.props = JSON.parse(storeValues.props);
+    }
   } catch (err) {
     // do nothing
   }
